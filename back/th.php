@@ -2,14 +2,14 @@
 <div class="ct">
     <label for="big">新增大分類</label>
     <input type="text" name="big" id="big">
-    <button>新增</button>
+    <button onclick="addBig()">新增</button>
 </div>
 <!-- div.ct>select+input:text+button -->
  <div class="ct">
     <label for="bigSelect">新增中分類</label>
     <select name="big_select" id="bigSelect"></select>
     <input type="text" name="mid" id="mid">
-    <button>新增</button>
+    <button onclick="addMid()">新增</button>
 </div>
 <div class="type-list">
     <table class="all">
@@ -29,6 +29,55 @@
         </tr>
     </table>
 </div>
+<script>
+getBigs();    
+function addBig(){
+    let big=$("#big").val()
+    $.post("./api/save_type.php",{'name':big,
+                               'main_id':0},(res)=>{
+        $("#big").val('')
+        getBigs()
+    })
+}
+function addMid(){
+    let mid=$("#mid").val()
+    let main_id=$("#bigSelect").val()
+    $.post("./api/save_type.php",{'name':mid,
+                               'main_id':main_id},(res)=>{
+        $("#mid").val('')
+    })
+}
+
+/* 可以合併兩個方法為一個
+ 
+  function addType(type){
+    let name='';
+    let main_id=0;
+    switch(type){
+        case 'big':
+            name=$("#big").val();
+        break;
+        case 'mid':
+            name=$("#mid").val();
+            main_id=$("#bigSelect").val()
+        break;
+    }
+    $.post("./api/save_type.php",{name,main_id},(res)=>{
+        $("#mid,#big").val('')
+        getBigs()
+    })
+
+} */
+
+
+function getBigs(){
+    $.get("./api/get_bigs.php",(bigs)=>{
+        $("#bigSelect").html(bigs);
+    })
+}    
+</script>
+
+
 
 <h2 class="ct">商品管理</h2>
 <div class="ct">
