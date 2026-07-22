@@ -123,4 +123,3 @@ function to($url){
 
 $Mem=new DB('members');
 $Admin=new DB('admin');
-$Type=new DB('types');
