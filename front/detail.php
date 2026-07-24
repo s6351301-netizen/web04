@@ -39,7 +39,13 @@ $item=$Item->find($_GET['id']);
     </div>
 </div>
 <div class="all tt ct">
-    <input type="text" class="item-qt:number" value='1' style='width:60px'>
-    <img src="./icon/0402.jpg" >
+    <input type="number" class="item-qt" value='1' style='width:60px'>
+    <img src="./icon/0402.jpg"  onclick="buy(<?= $item['id'] ?>)">
 </div>
 <div class="ct"><button onclick="location.href='?'">返回</button></div>
+<script>
+function buy(id){
+    let qt=$(".item-qt").val()
+    location.href=`?do=buycart&item=${id}&qt=${qt}`
+}
+</script>
