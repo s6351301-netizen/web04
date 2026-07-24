@@ -42,9 +42,10 @@ body
 #right
 {
 	display:inline-block;
-	width:65%;
+	width:70%;
 	padding:2%;
-	min-height:550px;
+	height:550px;
+	overflow:auto;
 	border:#000 1px solid;
 }
 #bottom
@@ -66,7 +67,7 @@ body
 .all td
 {
 	min-width:50px;
-	padding:10px;
+	padding:5px;
 }
 .tt
 {

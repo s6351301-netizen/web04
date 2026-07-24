@@ -75,26 +75,17 @@ function getBigs(){
 
 <h2 class="ct">商品管理</h2>
 <div class="ct">
-    <button>新增商品</button>
+    <button onclick="location.href='?do=add_item'">新增商品</button>
 </div>
-<table class="all">
-    <tr class="tt ct">
-        <td>編號</td>
-        <td>商品名稱</td>
-        <td>庫存量</td>
-        <td>狀態</td>
-        <td>操作</td>
-    </tr>
-    <tr class="pp ct">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-            <button>修改</button>
-            <button>刪除</button>
-            <button>上架</button>
-            <button>下架</button>
-        </td>
-    </tr>
-</table>
+<div class="item-list">
+
+</div>
+ <script>
+getItemList();
+    
+ function getItemList(){
+    $.get("./api/get_item_list.php",(list)=>{
+        $(".item-list").html(list)
+    })
+}   
+ </script>
